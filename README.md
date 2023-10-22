@@ -10,3 +10,7 @@ Structures.h
 
 
 Further addition are Welcome. 
+
+
+./main is the executable for the linux operating systems
+./main.exe is for the windows operating system

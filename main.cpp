@@ -1,24 +1,47 @@
+#include <cstdio>
+#include <iostream>
 #include <raylib.h>
 #include <bits/stdc++.h>
 
+//  Header File contains all the Structures and Functions
 #include "Structures.h"
 
 
-
 // Function to initialize the grid
-void InitializeGrid(int** grid) {
+void InitializeGrid(int** grid, int creature) {
 
     // clear grid 
     ClearGrid(grid);
-    
-    // SetRandom(grid, 0, 0);
-    // SetGlider(grid, 10, 10);
-    // SetPulsar(grid, 50, 100);
-    // SetGosperGliderGun(grid, 10, 10);
-    // SetReplicator(grid, 100, 100);
-    // SetExplorer(grid, 10, 10);
-    // SetBeacon(grid, 20 , 20);
-    SetAcorn(grid, 120, 120);
+
+
+    switch ( creature ) {
+
+        case 1:
+            SetRandom(grid, 0, 0);
+            break;
+        case 2:
+            SetGlider(grid, 10, 10);
+            break;
+        case 3:
+            SetPulsar(grid, 50, 100);
+            break;
+        case 4:
+            SetGosperGliderGun(grid, 10, 10);
+            break;
+        case 5:
+            SetReplicator(grid, 100, 100);
+            break;
+        case 6:
+            SetExplorer(grid, 10, 10);
+            break;
+        case 7:
+            SetBeacon(grid, 20 , 20);
+            break;
+        case 8:
+            SetAcorn(grid, 120, 120);
+            break;
+    }
+
 }
 
 // Function to update the grid based on Conway's rules
@@ -65,6 +88,30 @@ void UpdateGrid(int** grid) {
 }
 
 int main() {
+
+    
+    int creature = 0;
+    // clear the screen 
+    system("clear");
+    std::cout << "\033[31mred Enter what u Creature U want to Place\n" << std::endl;
+
+    std::cout << "\033[0m1. Random" << std::endl;
+    std::cout << "2. Glider" << std::endl;
+    std::cout << "3. Pulsar" << std::endl;
+    std::cout << "4. Gosper Glider Gun" << std::endl;
+    std::cout << "5. Replicator" << std::endl;
+    std::cout << "6. Explorer" << std::endl;
+    std::cout << "7. Beacon" << std::endl;
+    std::cout << "8. Acorn \n\nHere   ->   : ";
+
+    std::cin >> creature;
+
+    while ( creature < 1 || creature > 8 ) {
+        std::cout << "Enter a valid Value\n :" << std::endl;
+        std::cin >> creature;
+    }
+
+
     InitWindow(screenWidth, screenHeight, "Conway's Game of Life");
 
     // Initialize the grid and allocate memory
@@ -73,7 +120,7 @@ int main() {
         grid[i] = (int*)malloc(gridSize * sizeof(int));
     }
 
-    InitializeGrid(grid);
+    InitializeGrid(grid, creature);
 
     SetTargetFPS(10);
 
